@@ -1,13 +1,13 @@
 // setup canvas
 
-const pElem = document.querySelector('p');
+const pElem = document.querySelector("p");
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
 const width = (canvas.width = window.innerWidth);
 const height = (canvas.height = window.innerHeight);
 
-let numberOfBalls = 25
+let numberOfBalls = 25;
 let ballCount = numberOfBalls;
 
 // function to generate random number
@@ -60,13 +60,13 @@ EvilCircle.prototype.checkBounds = function () {
 EvilCircle.prototype.setControls = function () {
   let _this = this;
   window.onkeydown = function (e) {
-    if (e.key === "a") {
+    if (e.key === "ArrowLeft") {
       _this.x -= _this.velX;
-    } else if (e.key === "d") {
+    } else if (e.key === "ArrowRight") {
       _this.x += _this.velX;
-    } else if (e.key === "w") {
+    } else if (e.key === "ArrowUp") {
       _this.y -= _this.velY;
-    } else if (e.key === "s") {
+    } else if (e.key === "ArrowDown") {
       _this.y += _this.velY;
     }
   };
@@ -128,7 +128,7 @@ Ball.prototype.collisionDetect = function () {
       const dy = this.y - balls[j].y;
       const distance = Math.sqrt(dx * dx + dy * dy);
 
-      if (distance < this.size + balls[j].size) {
+      if (distance < this.size + balls[j].size && balls[j].exist !== false) {
         balls[j].color = this.color =
           "rgb(" +
           random(0, 255) +
